@@ -7,12 +7,12 @@
     android:background="#e6e6e6"
     tools:context=".ui.activities.MessageActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/barLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,11 +36,11 @@
                 android:textStyle="bold" />
 
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMessages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -63,14 +63,14 @@
             android:background="@android:color/transparent"
             android:hint="Type a message..."
             android:paddingStart="5dp"
-            android:paddingLeft="5dp" />
+             />
 
         <ImageButton
             android:id="@+id/buttonSend"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            
             android:background="@drawable/ic_action_name" />
 
     </RelativeLayout>

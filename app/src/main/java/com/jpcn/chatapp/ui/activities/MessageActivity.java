@@ -1,17 +1,18 @@
 package com.jpcn.chatapp.ui.activities;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,9 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.jpcn.chatapp.Adapter.MessageAdapter;
-import com.jpcn.chatapp.R;
 import com.jpcn.chatapp.APIService;
+import com.jpcn.chatapp.Adapter.MessageAdapter;
 import com.jpcn.chatapp.Model.Chat;
 import com.jpcn.chatapp.Model.User;
 import com.jpcn.chatapp.Notifications.Client;
@@ -31,6 +31,7 @@ import com.jpcn.chatapp.Notifications.Data;
 import com.jpcn.chatapp.Notifications.MyResponse;
 import com.jpcn.chatapp.Notifications.Sender;
 import com.jpcn.chatapp.Notifications.Token;
+import com.jpcn.chatapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -1,23 +1,19 @@
 package com.jpcn.chatapp.Notifications;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
-public class MyFirebaseIdService extends FirebaseInstanceIdService {
+public class MyFirebaseIdService extends FirebaseMessagingService {
 
     @Override
-    public void onTokenRefresh() {
-        super.onTokenRefresh();
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        String refreshToken = FirebaseInstanceId.getInstance().getToken();
-        if (firebaseUser != null) {
-            updateToken(refreshToken);
-        }
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        updateToken(token);
     }
 
     private void updateToken(String refreshToken) {
@@ -25,6 +21,7 @@ public class MyFirebaseIdService extends FirebaseInstanceIdService {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
         Token token = new Token(refreshToken);
+        assert firebaseUser != null;
         reference.child(firebaseUser.getUid()).setValue(token);
     }
 }

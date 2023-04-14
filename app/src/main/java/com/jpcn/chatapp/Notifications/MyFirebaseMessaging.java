@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,15 +20,18 @@ import com.jpcn.chatapp.ui.activities.MessageActivity;
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
         String sented = remoteMessage.getData().get("sented");
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (firebaseUser != null && sented.equals(firebaseUser.getUid())) {
-            sendNotification(remoteMessage);
+        if (firebaseUser != null) {
+            assert sented != null;
+            if (sented.equals(firebaseUser.getUid())) {
+                sendNotification(remoteMessage);
+            }
         }
     }
 
