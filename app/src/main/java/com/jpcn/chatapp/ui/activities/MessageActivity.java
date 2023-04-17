@@ -24,6 +24,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jpcn.chatapp.APIService;
 import com.jpcn.chatapp.Adapter.MessageAdapter;
+import com.jpcn.chatapp.FirebaseRemoteConfigManager;
 import com.jpcn.chatapp.Model.Chat;
 import com.jpcn.chatapp.Model.User;
 import com.jpcn.chatapp.Notifications.Client;
@@ -176,8 +177,9 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                if (notify) {
-                    sendNotification(receiver, user.getUsername(), message);
+                String token = FirebaseRemoteConfigManager.INSTANCE.getRemoteConfig().getString("notification_key");
+                if (notify && !token.isEmpty()) {
+                    sendNotification(receiver, user.getUsername(), message, token);
                 }
                 notify = false;
             }
@@ -189,7 +191,7 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
-    private void sendNotification(String receiver, final String username, final String message) {
+    private void sendNotification(String receiver, final String username, final String message, String notificationToken) {
         DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
         Query query = tokens.orderByKey().equalTo(receiver);
         query.addValueEventListener(new ValueEventListener() {
@@ -200,7 +202,7 @@ public class MessageActivity extends AppCompatActivity {
                     Data data = new Data(firebaseUser.getUid(), R.mipmap.ic_launcher, username + ": " + message, "New message", userId);
                     Sender sender = new Sender(data, token.getToken());
 
-                    apiService.sendNotification(sender)
+                    apiService.sendNotification(sender, notificationToken)
                             .enqueue(new Callback<MyResponse>() {
                                 @Override
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
