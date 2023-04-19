@@ -1,4 +1,4 @@
-package com.jpcn.chatapp.Notifications;
+package com.jpcn.chatapp.data;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

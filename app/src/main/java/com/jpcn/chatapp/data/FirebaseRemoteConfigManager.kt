@@ -1,7 +1,8 @@
-package com.jpcn.chatapp
+package com.jpcn.chatapp.data
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.jpcn.chatapp.R
 
 object FirebaseRemoteConfigManager {
     fun getRemoteConfig(): FirebaseRemoteConfig {

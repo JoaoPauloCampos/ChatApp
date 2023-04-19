@@ -1,4 +1,4 @@
-package com.jpcn.chatapp.Notifications;
+package com.jpcn.chatapp.data;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,8 +13,11 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.jpcn.chatapp.model.Token;
 import com.jpcn.chatapp.ui.activities.MessageActivity;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
@@ -33,6 +36,21 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
                 sendNotification(remoteMessage);
             }
         }
+    }
+
+    @Override
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        updateToken(token);
+    }
+
+    private void updateToken(String refreshToken) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token = new Token(refreshToken);
+        assert firebaseUser != null;
+        reference.child(firebaseUser.getUid()).setValue(token);
     }
 
     private void sendNotification(RemoteMessage remoteMessage) {

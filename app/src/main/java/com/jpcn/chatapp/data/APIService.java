@@ -1,7 +1,7 @@
-package com.jpcn.chatapp;
+package com.jpcn.chatapp.data;
 
-import com.jpcn.chatapp.Notifications.MyResponse;
-import com.jpcn.chatapp.Notifications.Sender;
+import com.jpcn.chatapp.model.MyResponse;
+import com.jpcn.chatapp.model.Sender;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

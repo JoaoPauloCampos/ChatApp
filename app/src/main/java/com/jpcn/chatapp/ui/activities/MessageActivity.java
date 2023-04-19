@@ -22,17 +22,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.jpcn.chatapp.APIService;
-import com.jpcn.chatapp.Adapter.MessageAdapter;
-import com.jpcn.chatapp.FirebaseRemoteConfigManager;
-import com.jpcn.chatapp.Notifications.Client;
-import com.jpcn.chatapp.Notifications.Data;
-import com.jpcn.chatapp.Notifications.MyResponse;
-import com.jpcn.chatapp.Notifications.Sender;
-import com.jpcn.chatapp.Notifications.Token;
 import com.jpcn.chatapp.R;
+import com.jpcn.chatapp.data.APIService;
+import com.jpcn.chatapp.data.Client;
+import com.jpcn.chatapp.data.FirebaseRemoteConfigManager;
 import com.jpcn.chatapp.model.Chat;
+import com.jpcn.chatapp.model.Data;
+import com.jpcn.chatapp.model.MyResponse;
+import com.jpcn.chatapp.model.Sender;
+import com.jpcn.chatapp.model.Token;
 import com.jpcn.chatapp.model.User;
+import com.jpcn.chatapp.ui.adapters.MessageAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -207,7 +207,7 @@ public class MessageActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200) {
-                                        if (response.body().sucess != 1) {
+                                        if (response.body() != null && response.body().getSuccess() != 1) {
                                             Toast.makeText(MessageActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                                         }
                                     }

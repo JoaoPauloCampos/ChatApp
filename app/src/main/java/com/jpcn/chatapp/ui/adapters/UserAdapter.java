@@ -1,4 +1,4 @@
-package com.jpcn.chatapp.Adapter;
+package com.jpcn.chatapp.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
