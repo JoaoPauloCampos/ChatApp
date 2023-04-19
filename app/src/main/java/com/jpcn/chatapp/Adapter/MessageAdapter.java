@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.jpcn.chatapp.Model.Chat;
 import com.jpcn.chatapp.R;
+import com.jpcn.chatapp.model.Chat;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

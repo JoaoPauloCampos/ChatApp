@@ -25,14 +25,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.jpcn.chatapp.APIService;
 import com.jpcn.chatapp.Adapter.MessageAdapter;
 import com.jpcn.chatapp.FirebaseRemoteConfigManager;
-import com.jpcn.chatapp.Model.Chat;
-import com.jpcn.chatapp.Model.User;
 import com.jpcn.chatapp.Notifications.Client;
 import com.jpcn.chatapp.Notifications.Data;
 import com.jpcn.chatapp.Notifications.MyResponse;
 import com.jpcn.chatapp.Notifications.Sender;
 import com.jpcn.chatapp.Notifications.Token;
 import com.jpcn.chatapp.R;
+import com.jpcn.chatapp.model.Chat;
+import com.jpcn.chatapp.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

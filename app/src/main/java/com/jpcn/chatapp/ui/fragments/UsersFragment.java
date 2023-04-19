@@ -19,8 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jpcn.chatapp.Adapter.UserAdapter;
-import com.jpcn.chatapp.Model.User;
 import com.jpcn.chatapp.R;
+import com.jpcn.chatapp.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
