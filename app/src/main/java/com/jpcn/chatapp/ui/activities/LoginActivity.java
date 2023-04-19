@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 String passwordValue = password.getText().toString();
 
                 if (emailValue.isEmpty() || passwordValue.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.invalid_login, Toast.LENGTH_SHORT).show();
                 } else {
                     auth.signInWithEmailAndPassword(emailValue, passwordValue)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

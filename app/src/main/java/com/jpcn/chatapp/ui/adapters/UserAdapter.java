@@ -29,9 +29,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
-    private Context context;
-    private List<User> users;
-    private boolean isChat;
+    private final Context context;
+    private final List<User> users;
+    private final boolean isChat;
 
     private String lastMsg;
 

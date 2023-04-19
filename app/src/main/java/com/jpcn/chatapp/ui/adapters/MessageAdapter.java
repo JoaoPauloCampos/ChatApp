@@ -23,9 +23,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
-    private Context context;
-    private List<Chat> chats;
-    private String imageurl;
+    private final Context context;
+    private final List<Chat> chats;
+    private final String imageurl;
 
     FirebaseUser firebaseUser;
 
