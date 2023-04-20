@@ -13,11 +13,9 @@ import com.jpcn.chatapp.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        val binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(binding.header.toolbar)
 
@@ -30,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateLoginFields(emailValue: String, passwordValue: String) {
         if (emailValue.isBlank() || passwordValue.isBlank()) {
-            Toast.makeText(this@LoginActivity, R.string.invalid_login, Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, R.string.invalid_login, Toast.LENGTH_SHORT).show()
         } else {
             doLogin(emailValue, passwordValue)
         }
