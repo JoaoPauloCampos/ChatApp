@@ -20,17 +20,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jpcn.chatapp.R;
-import com.jpcn.chatapp.data.APIService;
-import com.jpcn.chatapp.data.Client;
-import com.jpcn.chatapp.data.FirebaseRemoteConfigManager;
 import com.jpcn.chatapp.model.Chat;
-import com.jpcn.chatapp.model.Data;
-import com.jpcn.chatapp.model.MyResponse;
-import com.jpcn.chatapp.model.Sender;
-import com.jpcn.chatapp.model.Token;
 import com.jpcn.chatapp.model.User;
 import com.jpcn.chatapp.ui.adapters.MessageAdapter;
 import com.squareup.picasso.Picasso;
@@ -40,9 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MessageActivity extends AppCompatActivity {
 
@@ -63,8 +52,6 @@ public class MessageActivity extends AppCompatActivity {
 
     private Intent intent;
 
-    APIService apiService;
-
     boolean notify = false;
 
     @Override
@@ -82,8 +69,6 @@ public class MessageActivity extends AppCompatActivity {
                 startActivity(new Intent(MessageActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
-
-        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
         profileImage = findViewById(R.id.profileImage);
         username = findViewById(R.id.username);
@@ -171,54 +156,10 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-        final String msg = message;
         reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                String token = FirebaseRemoteConfigManager.INSTANCE.getRemoteConfig().getString("notification_key");
-                if (notify && !token.isEmpty()) {
-                    sendNotification(receiver, user.getUsername(), message, token);
-                }
-                notify = false;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void sendNotification(String receiver, final String username, final String message, String notificationToken) {
-        DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
-        Query query = tokens.orderByKey().equalTo(receiver);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(firebaseUser.getUid(), R.mipmap.ic_launcher, username + ": " + message, "New message", userId);
-                    Sender sender = new Sender(data, token.getToken());
-
-                    apiService.sendNotification(sender, notificationToken)
-                            .enqueue(new Callback<MyResponse>() {
-                                @Override
-                                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                                    if (response.code() == 200) {
-                                        if (response.body() != null && response.body().getSuccess() != 1) {
-                                            Toast.makeText(MessageActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<MyResponse> call, Throwable t) {
-
-                                }
-                            });
-                }
             }
 
             @Override
