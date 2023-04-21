@@ -2,4 +2,7 @@
     <string name="app_name">ChatApp</string>
     <string name="action_settings">Settings</string>
     <string name="invalid_login">Todos os campos devem ser preenchidos</string>
+    <string name="register_error_message">Todos os campos devem ser preenchidos</string>
+    <string name="passoword_error_msg">O password deve conter pelo menos 6 caracteres</string>
+    <string name="register_failed_message">Não foi possível realizar o cadastro</string>
 </resources>
