@@ -38,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun setupToolbar(binding: ActivityRegisterBinding) {
         setSupportActionBar(binding.header.toolbar)
-        supportActionBar?.title = "Register"
+        supportActionBar?.title = getString(R.string.register_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

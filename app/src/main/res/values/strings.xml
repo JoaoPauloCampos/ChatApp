@@ -5,4 +5,8 @@
     <string name="register_error_message">Todos os campos devem ser preenchidos</string>
     <string name="passoword_error_msg">O password deve conter pelo menos 6 caracteres</string>
     <string name="register_failed_message">Não foi possível realizar o cadastro</string>
+    <string name="type_a_message">Type a message...</string>
+    <string name="login_error_message">Falha ao realizar o login</string>
+    <string name="login_title">Login</string>
+    <string name="register_title">Register</string>
 </resources>

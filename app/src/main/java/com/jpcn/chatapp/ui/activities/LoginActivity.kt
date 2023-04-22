@@ -43,14 +43,14 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@LoginActivity, "Falha ao realizar o login", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, getString(R.string.login_error_message), Toast.LENGTH_SHORT).show()
                 }
             }
     }
 
     private fun setupToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Login"
+        supportActionBar?.title = getString(R.string.login_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }
