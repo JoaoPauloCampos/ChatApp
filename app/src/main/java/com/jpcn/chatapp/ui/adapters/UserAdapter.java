@@ -24,6 +24,7 @@ import com.jpcn.chatapp.ui.activities.MessageActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -33,7 +34,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private final List<User> users;
     private final boolean isChat;
 
-    private String lastMsg;
+    private String lastMsg = "default";
 
     public UserAdapter(Context context, List<User> users, boolean isChat) {
         this.users = users;
@@ -52,7 +53,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         final User user = users.get(position);
         viewHolder.username.setText(user.getUsername());
-        if (user.getImageURL().equals("default")) {
+        if (Objects.equals(user.getImageURL(), "default")) {
             viewHolder.profileImage.setImageResource(R.mipmap.ic_launcher);
         } else {
             Picasso.get().load(user.getImageURL()).into(viewHolder.profileImage);
@@ -60,7 +61,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         if (isChat) {
             lastMessage(user.getId(), viewHolder.textLastMessage);
-            if (user.getStatus().equals("online")) {
+            if (Objects.equals(user.getStatus(), "online")) {
                 viewHolder.imgOn.setVisibility(View.VISIBLE);
                 viewHolder.imgOff.setVisibility(View.GONE);
             } else {
@@ -130,7 +131,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                 switch (lastMsg) {
                     case "default":
-                        textLastMessage.setText("No Message");
+                        textLastMessage.setText(R.string.no_message);
                         break;
                     default:
                         textLastMessage.setText(lastMsg);

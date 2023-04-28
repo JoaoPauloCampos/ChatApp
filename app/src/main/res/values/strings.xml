@@ -9,4 +9,5 @@
     <string name="login_error_message">Falha ao realizar o login</string>
     <string name="login_title">Login</string>
     <string name="register_title">Register</string>
+    <string name="no_message">No Message</string>
 </resources>
