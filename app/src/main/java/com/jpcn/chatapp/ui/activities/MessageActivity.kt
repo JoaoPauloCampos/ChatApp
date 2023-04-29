@@ -19,7 +19,6 @@ import com.jpcn.chatapp.ui.adapters.MessageAdapter
 import com.squareup.picasso.Picasso
 
 class MessageActivity : AppCompatActivity() {
-    var notify = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMessageBinding.inflate(layoutInflater)
@@ -42,12 +41,11 @@ class MessageActivity : AppCompatActivity() {
         userId: String
     ) {
         binding.buttonSend.setOnClickListener {
-            notify = true
             val message = binding.textSend.text.toString()
             if (message.isNotBlank()) {
                 sendMessage(firebaseUser.uid, userId, message)
             } else {
-                Toast.makeText(this@MessageActivity, "You can't send empty message", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MessageActivity, getString(R.string.empty_message_error), Toast.LENGTH_SHORT).show()
             }
             binding.textSend.setText("")
         }
